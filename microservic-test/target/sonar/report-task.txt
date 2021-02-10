@@ -1,0 +1,6 @@
+projectKey=cn.simple-microservice:simple-microservice
+serverUrl=http://192.168.40.131:9000
+serverVersion=8.6.0.39681
+dashboardUrl=http://192.168.40.131:9000/dashboard?id=cn.simple-microservice%3Asimple-microservice
+ceTaskId=AXeMIi74gW1t5FU1GC8D
+ceTaskUrl=http://192.168.40.131:9000/api/ce/task?id=AXeMIi74gW1t5FU1GC8D

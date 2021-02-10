@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: product
+  namespace: jenkins-demo 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project: ms
+      app: product
+  template:
+    metadata:
+      labels:
+        project: ms 
+        app: product
+    spec:
+      imagePullSecrets:
+      - name: registry-pull-secret
+      containers:
+      - name: product
+        image: 192.168.40.132/microservice1/jenkins-demo:<BUILD_TAG>
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: branch
+          value: <BRANCH_NAME>
+        ports:
+          - protocol: TCP
+            containerPort: 8010 
+        resources:
+          limits:
+            cpu: 1
+            memory: 1Gi
+        readinessProbe:
+          tcpSocket:
+            port: 8010
+          initialDelaySeconds: 60
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 8010
+          initialDelaySeconds: 60
+          periodSeconds: 10
